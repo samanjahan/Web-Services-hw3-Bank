@@ -62,12 +62,13 @@ public class BankFacadeREST extends AbstractFacade<Bank> {
         return super.find(id);
     }
     
-    @GET
+    @POST
     @Path("/pay/name={name}&creditCard={creditCard}&amount{amount}")
     @Produces({MediaType.APPLICATION_JSON})
-    public String pay(@PathParam("name")String name,@PathParam("creditCard")String creditCard,@PathParam("amount")String amount){
+    public String pay(@PathParam("name")String name,@PathParam("creditCard")String creditCard,@PathParam("amount")int amount){
+        System.out.println("name " + name);
         Bank bank = em.find(Bank.class, name);
-        
+       
         if(bank == null){
             return "false";
         }
